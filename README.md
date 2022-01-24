@@ -1,9 +1,18 @@
 # PostgreSQL
 
+* [測試環境](#測試環境)
 * [Install](#Install)
 * [pgAdmin](#pgAdmin)
 * [Note](#Note)
 * [測試](#測試)
+
+<h1 id="測試環境"> 測試環境 </h1>
+
+* OS Name: Microsoft Windows Server 2016 Standard Evaluation
+* OS Version: 10.0.14393 Build 14393
+* CPU: Intel Xeon E3-1240 v6
+* RAM: DDR4 16G(Kingston 9965684-005.A00G 8G + Apacer 76.C105G.D100B 8G)
+* STORAGE: ST1000DM010-2EP102
 
 <h1 id="Install"> Install </h1>
 
@@ -130,14 +139,6 @@ SELECT PG_SIZE_PRETTY(PG_RELATION_SIZE('test'));
 
 <h1 id="測試"> 測試 </h1>
 
-## 測試環境
-
-* OS Name: Microsoft Windows Server 2016 Standard Evaluation
-* OS Version: 10.0.14393 Build 14393
-* CPU: Intel Xeon E3-1240 v6
-* RAM: DDR4 16G(Kingston 9965684-005.A00G 8G + Apacer 76.C105G.D100B 8G)
-* STORAGE: ST1000DM010-2EP102
-
 ## 寫入測試資料
 ```c#
 var device = new List<string>() { "ttt1", "ttt2", "ttt3", "ttt4", "ttt5", "ttt6", "ttt7", "ttt8", "ttt9", "ttt10" };
@@ -191,7 +192,7 @@ Console.WriteLine(timeFormat);
 
 * where 兩個條件 deviceId,time(小時)的最後1筆資料(資料總共38年)
 
- 1. 沒 index 沒 partition 2.3~2.9s，用 deviceId 和 dateTime 建index 112ms~244ms
- 2. 沒 index 6個 partition(以7年分割) 658ms~910ms，用 deviceId 和 dateTime 建index 115ms~289ms
- 3. 沒 index 457個 partition(以月分割) 128ms~280ms，用 deviceId 和 dateTime 建index 114ms~225ms
- 4. 沒 index 1371個 partition(以15天分割) 114ms~389ms，用 deviceId 和 dateTime 建index 112ms~302ms
+|  | 沒 partition | 6個 partition(以7年分割) | 457個 partition(以月分割) | 1371個 partition(以15天分割) |
+| ------- | ------- | ------- | ------- | ------- |
+| 沒 index | 2.3~2.9s | 658ms~910ms | 128ms~280ms | 114ms~389ms |
+| 用 deviceId 和 dateTime 建index | 112ms~244ms | 115ms~289ms | 114ms~225ms | 112ms~302ms |
