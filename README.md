@@ -148,7 +148,7 @@ Console.ReadLine();
 stopWatch.Start();
 
 var rand = new Random();
-var connString = "Host=localhost;Port=5432;Username=postgres;Password=CSIEcsie2964;Database=postgres";
+var connString = "Host=localhost;Port=5432;Username=postgres;Password=;Database=postgres";
 var count = 0;
 
 using (var conn = new NpgsqlConnection(connString))
