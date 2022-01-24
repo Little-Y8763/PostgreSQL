@@ -192,7 +192,7 @@ Console.WriteLine(timeFormat);
 
 * where 兩個條件 deviceId,time(小時)的最後1筆資料(資料總共38年)
 
-|  | 沒 partition | 6個 partition(以7年分割) | 457個 partition(以月分割) | 1371個 partition(以15天分割) |
+|  | 沒 partition | 6個 partition (以7年分割) | 457個 partition (以月分割) | 1371個 partition (以15天分割) |
 | ------- | ------- | ------- | ------- | ------- |
 | 沒 index | 2.3~2.9s | 658ms~910ms | 128ms~280ms | 114ms~389ms |
-| 用 deviceId 和 dateTime 建index | 112ms~244ms | 115ms~289ms | 114ms~225ms | 112ms~302ms |
+| 用 deviceId 和 dateTime 建 index | 112ms~244ms | 115ms~289ms | 114ms~225ms | 112ms~302ms |
